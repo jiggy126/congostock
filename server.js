@@ -6,6 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 app.post('/api/scan', async (req, res) => {
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -24,4 +26,4 @@ app.post('/api/scan', async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('Server läuft'));
+app.listen(process.env.PORT || 3000, () => console.log('CongoStock Server läuft'));
